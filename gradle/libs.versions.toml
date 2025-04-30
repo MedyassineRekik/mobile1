@@ -1,0 +1,31 @@
+[versions]
+agp = "8.7.2"
+kotlin = "1.9.22" # Ajout crucial
+junit = "4.13.2"
+junitVersion = "1.1.5" # Mise à jour
+espressoCore = "3.5.1" # Version stable
+appcompat = "1.6.1"
+material = "1.12.0" # Version récente
+activity = "1.9.0" # Mise à jour
+constraintlayout = "2.2.0-alpha13" # Version compatible
+navigationRuntime = "2.7.7" # Version stable
+
+[libraries]
+# Tests
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+
+# Core
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+navigation-runtime = { group = "androidx.navigation", name = "navigation-runtime", version.ref = "navigationRuntime" }
+
+# Lottie
+lottie = { group = "com.airbnb.android", name = "lottie", version = "6.4.0" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" } # Nécessaire
