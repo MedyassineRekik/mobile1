@@ -10,31 +10,30 @@
 
     <ImageView
         android:id="@+id/onboarding_image"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
-        android:src="@drawable/prescription"
         android:contentDescription="Medication reminder illustration"
+        android:src="@drawable/prescription"
         tools:ignore="ContentDescription,HardcodedText" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Digital Prescription Manager"
+        android:layout_marginBottom="16dp"
+        android:text="Doctor Appointment Planner"
         android:textColor="#009688"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="16dp"
         tools:ignore="HardcodedText" />
 
     <TextView
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:text="Store and organize all your prescriptions in one secure place"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp"        android:text="Schedule and track all your medical appointments with reminders"
         android:textColor="#000000"
         android:textSize="16sp"
-        android:gravity="center"
-        android:lineSpacingExtra="4dp"
         tools:ignore="HardcodedText" />
 </LinearLayout>

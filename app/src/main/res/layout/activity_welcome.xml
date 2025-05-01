@@ -11,9 +11,11 @@
 
     <!-- Logo de l'application -->
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/appointments"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_welcome"
         />
 
     <!-- Titre principal -->
