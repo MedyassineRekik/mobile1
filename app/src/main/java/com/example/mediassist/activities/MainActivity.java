@@ -1,14 +1,18 @@
 package com.example.mediassist.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-
 import com.example.mediassist.R;
 import com.example.mediassist.activities.Auth.LoginActivity;
 import com.example.mediassist.activities.onboarding.OnboardingActivity;
@@ -63,22 +67,49 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Gestion du menu (dans l'image c'est un swipe vers la droite)
+        // Gestion du menu
         ImageView menuIcon = findViewById(R.id.menuIcon);
         menuIcon.setOnClickListener(v -> {
-            // Ici vous pouvez implémenter un drawer navigation ou une autre activité
-            // Pour l'exemple, nous allons vers une page "About Us"
             Intent intent = new Intent(MainActivity.this, OnboardingActivity.class);
             startActivity(intent);
         });
 
-        // Option de déconnexion (peut être dans le menu)
+        // Option de déconnexion avec popup de confirmation
         TextView logoutText = findViewById(R.id.logoutText);
-        logoutText.setOnClickListener(v -> {
+        logoutText.setOnClickListener(v -> showLogoutConfirmationDialog());
+    }
+
+    private void showLogoutConfirmationDialog() {
+        // Inflater le layout personnalisé
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_logout, null);
+
+        // Créer le dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomAlertDialog);
+        builder.setView(dialogView);
+        builder.setCancelable(true);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        // Personnaliser la fenêtre de dialogue
+        Window window = dialog.getWindow();
+        if (window != null) {
+            window.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+        }
+
+        // Gérer les clics sur les boutons
+        Button btnCancel = dialogView.findViewById(R.id.btnCancel);
+        Button btnLogout = dialogView.findViewById(R.id.btnLogout);
+
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
+
+        btnLogout.setOnClickListener(v -> {
+            // Action de déconnexion
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
+            dialog.dismiss();
         });
-    }
-}
+
+}}
