@@ -44,6 +44,7 @@
                 android:padding="6dp">
 
                 <ImageView
+
                     android:layout_width="26dp"
                     android:layout_height="26dp"
                     android:src="@drawable/ic_person_"
@@ -53,6 +54,7 @@
                     app:tint="#009688" />
 
                 <EditText
+                    android:id="@+id/firstnameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:hint="Prénom"
@@ -79,6 +81,7 @@
                     app:tint="#009688"/>
 
                 <EditText
+                    android:id="@+id/emailEditText"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:hint="Email"
@@ -105,6 +108,7 @@
                     app:tint="#009688" />
 
                 <EditText
+                    android:id="@+id/usernameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:hint="Nom d'utilisateur"
@@ -131,6 +135,7 @@
                     app:tint="#009688" />
 
                 <EditText
+                    android:id="@+id/passwordEditText"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:hint="Mot de passe"
