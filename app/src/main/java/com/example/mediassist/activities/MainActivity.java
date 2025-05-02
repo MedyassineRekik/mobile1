@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         profileCard.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            intent.putExtra("username", getIntent().getStringExtra("username"));
             startActivity(intent);
         });
 

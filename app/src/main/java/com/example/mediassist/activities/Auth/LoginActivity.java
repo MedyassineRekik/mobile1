@@ -82,7 +82,9 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(this, "Connexion réussie", Toast.LENGTH_SHORT).show();
 
                 // Redirection vers MainActivity
-                startActivity(new Intent(this, MainActivity.class));
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("username", username); // Ajoute ça
+                startActivity(intent);
                 finish();
             } else {
                 Log.w(TAG, "Échec de connexion pour: " + username);

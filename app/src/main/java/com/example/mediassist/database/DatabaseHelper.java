@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Table Users
     private static final String TABLE_USERS = "users";
     private static final String COLUMN_ID = "id";
-    private static final String COLUMN_FIRSTNAME = "firstname";
+    public static final String COLUMN_FIRSTNAME = "firstname";
     private static final String COLUMN_EMAIL = "email";
     private static final String COLUMN_USERNAME = "username";
     private static final String COLUMN_PASSWORD = "password";
@@ -34,7 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_USERS + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUMN_FIRSTNAME + " TEXT,"
-                + COLUMN_EMAIL + " TEXT UNIQUE,"
+                + COLUMN_EMAIL + " TEXT,"
                 + COLUMN_USERNAME + " TEXT UNIQUE,"
                 + COLUMN_SALT + " TEXT,"
                 + COLUMN_PASSWORD + " TEXT)");
@@ -65,7 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean addUser(String firstname, String email, String username, String password) {
-        if (emailExists(email) || usernameExists(username)) {
+        if (usernameExists(username)) {
             return false;
         }
 
@@ -109,6 +109,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
+    public boolean usernameExists(String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_USERS,
+                new String[]{COLUMN_ID},
+                COLUMN_USERNAME + "=?",
+                new String[]{username},
+                null, null, null);
+
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+        return exists;
+    }
     public boolean emailExists(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_USERS,
@@ -122,17 +134,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return exists;
     }
 
-    public boolean usernameExists(String username) {
+    public Cursor getUserData(String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(TABLE_USERS,
+                new String[]{COLUMN_ID, COLUMN_FIRSTNAME, COLUMN_EMAIL, COLUMN_USERNAME},
+                COLUMN_USERNAME + "=?",
+                new String[]{username},
+                null, null, null);
+    }
+
+
+
+    public String getUserFirstName(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_USERS,
-                new String[]{COLUMN_ID},
+                new String[]{COLUMN_FIRSTNAME},
                 COLUMN_USERNAME + "=?",
                 new String[]{username},
                 null, null, null);
 
-        boolean exists = cursor.getCount() > 0;
+        if (cursor.moveToFirst()) {
+            String firstName = cursor.getString(0);
+            cursor.close();
+            return firstName;
+        }
         cursor.close();
-        return exists;
+        return null;
     }
 
     public void logAllUsers() {

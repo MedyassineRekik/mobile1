@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.mediassist.R;
+import com.example.mediassist.database.DatabaseHelper;
 import com.google.android.material.textfield.TextInputEditText;
 
 import android.Manifest;
@@ -51,6 +52,11 @@ public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        String username = getIntent().getStringExtra("username");
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        String firstName = dbHelper.getUserFirstName(username);
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
@@ -77,15 +83,15 @@ public class ProfileActivity extends AppCompatActivity {
         TextView addressText = findViewById(R.id.addressText);
 
         // Exemple de données - à remplacer par les données réelles de l'utilisateur
-        nameText.setText("Cisco Nano");
-        ageText.setText("70 ans");
-        genderText.setText("Femme");
-        bloodTypeText.setText("A+");
-        weightText.setText("50 kg");
-        heightText.setText("160 cm");
-        allergiesText.setText("Aucune allergie connue");
-        phoneText.setText("+21968975340");
-        addressText.setText("Adresse non renseignée");
+        nameText.setText(firstName);
+        ageText.setText(" ");
+        genderText.setText("");
+        bloodTypeText.setText("");
+        weightText.setText("");
+        heightText.setText(" ");
+        allergiesText.setText("");
+        phoneText.setText("");
+        addressText.setText(" ");
     }
     private void showEditProfileDialog() {
         // Inflater le layout
