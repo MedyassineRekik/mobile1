@@ -60,6 +60,9 @@
         <activity android:name=".activities.ScheduleActivity"
             android:exported="true"
             android:theme="@style/Theme.MediAssist.NoActionBar" />
+        <activity android:name=".activities.NotificationsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MediAssist.NoActionBar" />
     </application>
 
 
