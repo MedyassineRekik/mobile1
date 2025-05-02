@@ -7,8 +7,5 @@
     </style>
 
     <style name="Theme.MediAssist" parent="Base.Theme.MediAssist" />
-    <style name="Theme.MediAssist.NoActionBar" parent="Theme.MediAssist">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
+
 </resources>

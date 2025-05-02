@@ -19,6 +19,10 @@
 
     <application>
 
+        <activity
+            android:name=".activities.AboutActivity"
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/Theme.MediAssist.NoActionBar"/>
 
         <activity android:name=".activities.SplashActivity"
 

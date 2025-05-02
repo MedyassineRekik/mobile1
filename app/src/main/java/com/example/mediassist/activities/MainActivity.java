@@ -21,7 +21,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import com.example.mediassist.R;
 import com.example.mediassist.activities.Auth.LoginActivity;
-import com.example.mediassist.activities.onboarding.OnboardingActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,118 +31,112 @@ public class MainActivity extends AppCompatActivity {
 
         // Définition du titre
         TextView title = findViewById(R.id.title);
-        title.setText("MediAssist Reminder");
+        title.setText("MediAssist Rappels");
 
         // Initialisation des CardViews pour chaque fonctionnalité
+        initialiserCartesFonctionnalites();
+
+        // Gestion du menu
+        ImageView menuIcon = findViewById(R.id.menuIcon);
+        menuIcon.setOnClickListener(v -> afficherMenuDeroulant());
+
+        // Option de déconnexion
+        TextView logoutText = findViewById(R.id.logoutText);
+        logoutText.setOnClickListener(v -> afficherConfirmationDeconnexion());
+    }
+
+    private void initialiserCartesFonctionnalites() {
+        // Rendez-vous médicaux
         CardView appointmentsCard = findViewById(R.id.appointmentsCard);
-        CardView emergencyCard = findViewById(R.id.emergencyCard);
-        CardView medicationCard = findViewById(R.id.medicationCard);
-        CardView prescriptionsCard = findViewById(R.id.prescriptionsCard);
-        CardView profileCard = findViewById(R.id.profileCard);
-        CardView scheduleCard = findViewById(R.id.scheduleCard);
-
-        // Navigation vers les différentes activités
         appointmentsCard.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, AppointmentsActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, AppointmentsActivity.class));
         });
 
+        // Urgences
+        CardView emergencyCard = findViewById(R.id.emergencyCard);
         emergencyCard.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, EmergencyActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, EmergencyActivity.class));
         });
 
+        // Médicaments
+        CardView medicationCard = findViewById(R.id.medicationCard);
         medicationCard.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, MedicationActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, MedicationActivity.class));
         });
 
+        // Ordonnances
+        CardView prescriptionsCard = findViewById(R.id.prescriptionsCard);
         prescriptionsCard.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, PrescriptionsActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, PrescriptionsActivity.class));
         });
 
+        // Profil
+        CardView profileCard = findViewById(R.id.profileCard);
         profileCard.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            Intent intent = new Intent(this, ProfileActivity.class);
             intent.putExtra("username", getIntent().getStringExtra("username"));
             startActivity(intent);
         });
 
+        // Planning
+        CardView scheduleCard = findViewById(R.id.scheduleCard);
         scheduleCard.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ScheduleActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, ScheduleActivity.class));
         });
-
-        // Gestion du menu
-        ImageView menuIcon = findViewById(R.id.menuIcon);
-        menuIcon.setOnClickListener(v -> showMenuDrawer());
-
-        // Option de déconnexion avec popup de confirmation
-        TextView logoutText = findViewById(R.id.logoutText);
-        logoutText.setOnClickListener(v -> showLogoutConfirmationDialog());
     }
 
-    private void showMenuDrawer() {
-        // Inflater le layout du menu
-
+    private void afficherMenuDeroulant() {
         View menuView = LayoutInflater.from(this).inflate(R.layout.menu_drawer, null);
 
-        // Créer le popup
+        // Création et configuration du popup
         PopupWindow popupWindow = new PopupWindow(
                 menuView,
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 true
         );
-
-        // Style du popup
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
         popupWindow.setElevation(16f);
         popupWindow.setOutsideTouchable(true);
 
-        // Afficher le popup ancré à l'icône menu
-        menuView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        // Positionnement du menu
         ImageView menuIcon = findViewById(R.id.menuIcon);
-
-        // Positionner le menu à droite de l'icône
+        menuView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         int[] location = new int[2];
         menuIcon.getLocationOnScreen(location);
         popupWindow.showAtLocation(menuIcon, Gravity.NO_GRAVITY,
                 location[0] + menuIcon.getWidth(), location[1]);
 
-        // Gérer les clics sur les éléments du menu
-        LinearLayout menuNotifications = menuView.findViewById(R.id.menuNotifications);
-        LinearLayout menuSettings = menuView.findViewById(R.id.menuSettings);
-        LinearLayout menuAbout = menuView.findViewById(R.id.menuAbout);
+        // Gestion des clics sur les éléments du menu
+        configurerActionsMenu(menuView, popupWindow);
+    }
 
-        // Dans la méthode showMenuDrawer() :
+    private void configurerActionsMenu(View menuView, PopupWindow popupWindow) {
+        // Notifications
+        LinearLayout menuNotifications = menuView.findViewById(R.id.menuNotifications);
         menuNotifications.setOnClickListener(v -> {
             popupWindow.dismiss();
-            // Ouvrir les notifications
-            Intent intent = new Intent(MainActivity.this, NotificationsActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, NotificationsActivity.class));
         });
 
+        // Paramètres
+        LinearLayout menuSettings = menuView.findViewById(R.id.menuSettings);
         menuSettings.setOnClickListener(v -> {
             popupWindow.dismiss();
-            // Ouvrir les paramètres
-            Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Paramètres", Toast.LENGTH_SHORT).show();
         });
 
+        // À propos
+        LinearLayout menuAbout = menuView.findViewById(R.id.menuAbout);
         menuAbout.setOnClickListener(v -> {
             popupWindow.dismiss();
-            // Ouvrir About Us
-            Intent intent = new Intent(MainActivity.this, OnboardingActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, AboutActivity.class));
         });
     }
 
-    private void showLogoutConfirmationDialog() {
-
-        // Inflater le layout personnalisé
+    private void afficherConfirmationDeconnexion() {
         View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_logout, null);
 
-        // Créer le dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomAlertDialog);
         builder.setView(dialogView);
         builder.setCancelable(true);
@@ -151,26 +144,28 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
 
-        // Personnaliser la fenêtre de dialogue
+        // Style de la fenêtre
         Window window = dialog.getWindow();
         if (window != null) {
             window.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
         }
 
-        // Gérer les clics sur les boutons
+        // Gestion des boutons
         Button btnCancel = dialogView.findViewById(R.id.btnCancel);
         Button btnLogout = dialogView.findViewById(R.id.btnLogout);
 
         btnCancel.setOnClickListener(v -> dialog.dismiss());
 
         btnLogout.setOnClickListener(v -> {
-            // Action de déconnexion
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
+            deconnecterUtilisateur();
             dialog.dismiss();
-        }
-        );
+        });
+    }
+
+    private void deconnecterUtilisateur() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 }

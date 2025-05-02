@@ -29,7 +29,7 @@
         <color name="dark_textSecondary">#BDBDBD</color> <!-- Lighter gray for better readability -->
 
 
-
+    <color name="transparent">#00000000</color>
 
 
 </resources>

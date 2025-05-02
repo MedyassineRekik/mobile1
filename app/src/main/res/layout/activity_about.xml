@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- En-tête -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingBottom="24dp">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/ic_welcome"
+                android:contentDescription="Logo MediAssist"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="MediAssist"
+                android:textColor="#009688"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Votre compagnon santé"
+                android:textColor="#757575"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <!-- Section Description -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="MediAssist est une application innovante conçue pour faciliter la gestion de votre santé au quotidien. Notre solution vous permet de suivre vos médicaments, rendez-vous médicaux et informations de santé importantes."
+            android:textColor="#212121"
+            android:textSize="16sp"/>
+
+        <!-- Section Fonctionnalités -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Fonctionnalités principales :"
+            android:textColor="#009688"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Gestion des médicaments et rappels"
+                android:textColor="#212121"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Suivi des rendez-vous médicaux"
+                android:textColor="#212121"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Profil de santé complet"
+                android:textColor="#212121"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Contacts d'urgence"
+                android:textColor="#212121"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <!-- Section Version -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Version: 1.0.0"
+            android:textColor="#757575"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="© 2025 Équipe MediAssist"
+            android:textColor="#757575"
+            android:textSize="14sp"/>
+
+        <!-- Bouton Fermer -->
+        <Button
+            android:id="@+id/btnClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:text="Fermer"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#009688"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp"/>
+    </LinearLayout>
+</ScrollView>

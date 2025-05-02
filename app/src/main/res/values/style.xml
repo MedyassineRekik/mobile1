@@ -28,4 +28,11 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:background">@drawable/bg_selected_date</item>
     </style>
+    <style name="Theme.MediAssist.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">#009688</item>
+        <item name="colorPrimaryVariant">#009688</item>
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
 </resources>
