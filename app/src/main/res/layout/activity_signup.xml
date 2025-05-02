@@ -18,10 +18,10 @@
             android:layout_gravity="center"
             android:background="@drawable/white_card_shadow"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:elevation="4dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="40dp"
+            android:padding="28dp"
+            android:elevation="6dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginBottom="36dp"
             android:gravity="center_horizontal">
 
             <TextView
@@ -32,7 +32,7 @@
                 android:textColor="#009688"
                 android:textSize="26sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="24dp" />
+                android:layout_marginBottom="28dp" />
 
             <!-- Name Field with Icon -->
             <LinearLayout
@@ -40,24 +40,24 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="@drawable/edit_text_background"
-                android:layout_marginBottom="12dp"
-                android:padding="4dp">
+                android:layout_marginBottom="14dp"
+                android:padding="6dp">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
                     android:src="@drawable/ic_person_"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     app:tint="#009688" />
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="52dp"
                     android:hint="Name"
                     android:background="@android:color/transparent"
-                    android:padding="12dp"/>
+                    android:padding="14dp"/>
             </LinearLayout>
 
             <!-- Email Field with Icon -->
@@ -66,24 +66,24 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="@drawable/edit_text_background"
-                android:layout_marginBottom="12dp"
-                android:padding="4dp">
+                android:layout_marginBottom="14dp"
+                android:padding="6dp">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
                     android:src="@drawable/ic_email_foreground"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:tint="#009688"/>
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    app:tint="#009688"/>
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="52dp"
                     android:hint="Email"
                     android:background="@android:color/transparent"
-                    android:padding="12dp"/>
+                    android:padding="14dp"/>
             </LinearLayout>
 
             <!-- Username Field with Icon -->
@@ -92,24 +92,24 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="@drawable/edit_text_background"
-                android:layout_marginBottom="12dp"
-                android:padding="4dp">
+                android:layout_marginBottom="14dp"
+                android:padding="6dp">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
                     android:src="@drawable/ic_username"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     app:tint="#009688" />
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="52dp"
                     android:hint="Username"
                     android:background="@android:color/transparent"
-                    android:padding="12dp"/>
+                    android:padding="14dp"/>
             </LinearLayout>
 
             <!-- Password Field with Icon -->
@@ -118,36 +118,37 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="@drawable/edit_text_background"
-                android:layout_marginBottom="20dp"
-                android:padding="4dp">
+                android:layout_marginBottom="14dp"
+                android:padding="6dp">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
                     android:src="@drawable/ic_password"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     app:tint="#009688" />
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="52dp"
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:background="@android:color/transparent"
-                    android:padding="12dp"/>
+                    android:padding="14dp"/>
             </LinearLayout>
 
             <Button
                 android:id="@+id/signUpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 android:backgroundTint="#009688"
                 android:text="Sign Up"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/loginText"
@@ -156,7 +157,10 @@
                 android:gravity="center"
                 android:text="Already a user? Login"
                 android:textColor="#009688"
-                android:textSize="14sp" />
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:focusable="true"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

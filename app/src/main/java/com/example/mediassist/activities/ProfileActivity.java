@@ -17,7 +17,37 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.mediassist.R;
 import com.google.android.material.textfield.TextInputEditText;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.widget.ImageView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import java.io.IOException;
+import java.io.InputStream;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+
+
+
+
+
+
+
 public class ProfileActivity extends AppCompatActivity {
+
+    // Request codes
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int PERMISSION_REQUEST_CODE = 2;
+    // Views
+    private ImageView dialogProfileImage; // Changed from CircleImageView to regular ImageView
+    private Bitmap selectedProfileImage;
+    private static final int CAMERA_PERMISSION_CODE = 100;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +91,18 @@ public class ProfileActivity extends AppCompatActivity {
         // Inflater le layout
         View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_edit_profile, null);
 
+
+        // Initialize profile image view (using regular ImageView)
+        dialogProfileImage = dialogView.findViewById(R.id.dialogProfileImage);
+        Button btnChangePhoto = dialogView.findViewById(R.id.btnChangePhoto);
+
+        // Set click listener for photo change
+        btnChangePhoto.setOnClickListener(v -> {
+            if (checkStoragePermission()) {
+                openImagePicker();
+            }
+        });
+
         // Configurer le dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomAlertDialog);
         builder.setView(dialogView);
@@ -81,6 +123,82 @@ public class ProfileActivity extends AppCompatActivity {
             saveProfileChanges(dialogView);
             dialog.dismiss();
         });
+        checkAndRequestPermissions();
+    }
+
+    private void checkAndRequestPermissions() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.CAMERA},
+                    CAMERA_PERMISSION_CODE
+            );
+        } else {
+            openCamera();
+        }
+    }
+
+    private void openCamera() {
+        // Your logic to open the camera
+        Toast.makeText(this, "Camera is ready to use", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == CAMERA_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                openCamera();
+            } else {
+                Toast.makeText(this, "Camera permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
+    private boolean checkStoragePermission() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_MEDIA_IMAGES},
+                        PERMISSION_REQUEST_CODE);
+                return false;
+            }
+        } else {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        PERMISSION_REQUEST_CODE);
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    private void openImagePicker() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
+            Uri imageUri = data.getData();
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(imageUri);
+                selectedProfileImage = BitmapFactory.decodeStream(inputStream);
+                dialogProfileImage.setImageBitmap(selectedProfileImage);
+            } catch (IOException e) {
+                Toast.makeText(this, "Error loading image", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void initDialogFields(View dialogView) {

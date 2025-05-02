@@ -29,15 +29,24 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="8dp">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/dialogProfileImage"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:src="@drawable/ic_username"
-                app:civ_border_color="#009688"
-                app:civ_border_width="2dp"/>
+                android:scaleType="centerCrop"
+                android:background="@drawable/circle_shape"/>
+
+            <Button
+                android:id="@+id/btnChangePhoto"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Change Photo"
+                android:textColor="#009688" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
