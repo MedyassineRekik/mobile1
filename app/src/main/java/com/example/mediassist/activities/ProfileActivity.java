@@ -1,5 +1,6 @@
 package com.example.mediassist.activities;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -53,9 +54,11 @@ public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         String username = getIntent().getStringExtra("username");
         DatabaseHelper dbHelper = new DatabaseHelper(this);
-        String firstName = dbHelper.getUserFirstName(username);
+        Cursor userData = dbHelper.getUserData(username);
 
 
         super.onCreate(savedInstanceState);
@@ -84,15 +87,18 @@ public class ProfileActivity extends AppCompatActivity {
         TextView addressText = findViewById(R.id.addressText);
 
         // Exemple de données - à remplacer par les données réelles de l'utilisateur
-        nameText.setText(firstName);
-        ageText.setText(" ");
-        genderText.setText("");
-        bloodTypeText.setText("");
-        weightText.setText("");
-        heightText.setText(" ");
-        allergiesText.setText("");
-        phoneText.setText("");
-        addressText.setText(" ");
+        if (userData.moveToFirst()) {
+            nameText.setText(userData.getString(1)); // firstname
+            ageText.setText(userData.getString(4) != null ? userData.getString(4) + " ans" : "");
+            genderText.setText(userData.getString(5) != null ? userData.getString(5) : "");
+            bloodTypeText.setText(userData.getString(6) != null ? userData.getString(6) : "");
+            weightText.setText(userData.getString(7) != null ? userData.getString(7) + " kg" : "");
+            heightText.setText(userData.getString(8) != null ? userData.getString(8) + " cm" : "");
+            allergiesText.setText(userData.getString(9) != null ? userData.getString(9) : "");
+            phoneText.setText(userData.getString(10) != null ? userData.getString(10) : "");
+            addressText.setText(userData.getString(11) != null ? userData.getString(11) : "");
+        }
+        userData.close();
     }
     private void showEditProfileDialog() {
         // Inflater le layout

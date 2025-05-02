@@ -145,7 +145,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getUserData(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.query(TABLE_USERS,
-                new String[]{COLUMN_ID, COLUMN_FIRSTNAME, COLUMN_EMAIL, COLUMN_USERNAME},
+                new String[]{COLUMN_ID, COLUMN_FIRSTNAME, COLUMN_EMAIL, COLUMN_USERNAME,
+                        "age", "gender", "bloodType", "weight", "height",
+                        "allergies", "phone", "address"},
                 COLUMN_USERNAME + "=?",
                 new String[]{username},
                 null, null, null);
