@@ -14,7 +14,7 @@ import java.security.SecureRandom;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "MediAssist.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     // Table Users
     private static final String TABLE_USERS = "users";
@@ -37,7 +37,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_EMAIL + " TEXT,"
                 + COLUMN_USERNAME + " TEXT UNIQUE,"
                 + COLUMN_SALT + " TEXT,"
-                + COLUMN_PASSWORD + " TEXT)");
+                + COLUMN_PASSWORD + " TEXT,"
+                + "age TEXT,"
+                + "gender TEXT,"
+                + "bloodType TEXT,"
+                + "weight TEXT,"
+                + "height TEXT,"
+                + "allergies TEXT,"
+                + "phone TEXT,"
+                + "address TEXT)");
     }
 
     @Override
@@ -161,6 +169,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return null;
     }
+    public boolean updateUserProfile(String username, String age, String gender, String bloodType,
+                                     String weight, String height, String allergies,
+                                     String phone, String address) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("age", age);
+        values.put("gender", gender);
+        values.put("bloodType", bloodType);
+        values.put("weight", weight);
+        values.put("height", height);
+        values.put("allergies", allergies);
+        values.put("phone", phone);
+        values.put("address", address);
+
+        int rowsAffected = db.update(TABLE_USERS, values, COLUMN_USERNAME + "=?",
+                new String[]{username});
+        db.close();
+        Log.d("DB_UPDATE", "Rows affected: " + rowsAffected);
+
+        return rowsAffected > 0;
+
+    }
+
 
     public void logAllUsers() {
         SQLiteDatabase db = this.getReadableDatabase();

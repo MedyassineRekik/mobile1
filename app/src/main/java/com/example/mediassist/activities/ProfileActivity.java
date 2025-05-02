@@ -1,6 +1,7 @@
 package com.example.mediassist.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -271,6 +272,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void saveProfileChanges(View dialogView) {
         // Récupérer les nouvelles valeurs
+        String username = getIntent().getStringExtra("username");
+
         TextInputEditText dialogName = dialogView.findViewById(R.id.dialogNameText);
         TextInputEditText dialogAge = dialogView.findViewById(R.id.dialogAgeText);
         RadioGroup dialogGender = dialogView.findViewById(R.id.dialogGenderRadioGroup);
@@ -311,6 +314,26 @@ public class ProfileActivity extends AppCompatActivity {
 
         // Ici vous devriez aussi sauvegarder en base de données
         Toast.makeText(this, "Profil mis à jour", Toast.LENGTH_SHORT).show();
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        boolean updated = dbHelper.updateUserProfile(username,
+                dialogAge.getText().toString(),
+                (genderText.getText().toString()), // ou bien à partir de selectedGenderId si tu préfères
+                dialogBloodType.getSelectedItem().toString(),
+                dialogWeight.getText().toString(),
+                dialogHeight.getText().toString(),
+                dialogAllergies.getText().toString(),
+                dialogPhone.getText().toString(),
+                dialogAddress.getText().toString());
+        Log.d("PROFILE_SAVE", "Update result: " + updated);
+
+
+
+
+        if (updated) {
+            Toast.makeText(this, "Profil mis à jour avec succès", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Échec de la mise à jour", Toast.LENGTH_SHORT).show();
+        }
     }
     @Override
     public boolean onSupportNavigateUp() {
