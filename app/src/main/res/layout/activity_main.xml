@@ -7,18 +7,18 @@
     android:background="#FED4FFCB"
     tools:context=".activities.MainActivity">
 
-    <!-- Header avec titre et icône menu -->
+    <!-- Header (slightly taller at 110dp) -->
     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="103dp"
+        android:layout_height="110dp"
         android:background="#009688"
         android:padding="16dp">
 
         <ImageView
             android:id="@+id/menuIcon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_menu"
@@ -29,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:text="MediAssist"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -39,42 +40,25 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:text="Logout"
+            android:text="Déconnexion"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
     </RelativeLayout>
 
-    <!-- Grid des fonctionnalités principales -->
-    <GridView
-        android:id="@+id/gridView"
+    <!-- Compact Card Grid (slightly larger cards at 170dp) -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/header"
-        android:layout_margin="16dp"
-        android:columnWidth="150dp"
         android:gravity="center"
-        android:horizontalSpacing="16dp"
-        android:numColumns="2"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="16dp">
-
-        <!-- Les éléments seront ajoutés programmatiquement ou via un adapter -->
-    </GridView>
-
-    <!-- Alternative avec des CardViews statiques (plus simple pour ce cas) -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="535dp"
-        android:layout_below="@id/header"
-        android:layout_marginTop="134dp"
-        android:padding="16dp">
+        android:padding="12dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Première ligne -->
+            <!-- Row 1 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -84,67 +68,71 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/appointmentsCard"
                     android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="8dp"
+                    android:layout_height="170dp"
+                    android:layout_margin="6dp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="4dp">
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#FFFFFF"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="12dp">
 
                         <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
                             android:src="@drawable/ic_appointments"
                             app:tint="#009688" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Appointments"
-                            android:textColor="#000000" />
+                            android:layout_marginTop="10dp"
+                            android:text="Rendez-vous"
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/emergencyCard"
                     android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="8dp"
+                    android:layout_height="170dp"
+                    android:layout_margin="6dp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="4dp">
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#FFFFFF"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="12dp">
 
                         <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
                             android:src="@drawable/ic_emergency"
                             app:tint="#009688" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Emergnecy"
-                            android:textColor="#000000" />
+                            android:layout_marginTop="10dp"
+                            android:text="Urgences"
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
-            <!-- Deuxième ligne -->
+            <!-- Row 2 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -154,67 +142,71 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/medicationCard"
                     android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="8dp"
+                    android:layout_height="170dp"
+                    android:layout_margin="6dp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="4dp">
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#FFFFFF"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="12dp">
 
                         <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
                             android:src="@drawable/ic_medication"
                             app:tint="#009688" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Medications"
-                            android:textColor="#000000" />
+                            android:layout_marginTop="10dp"
+                            android:text="Médicaments"
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/prescriptionsCard"
                     android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="8dp"
+                    android:layout_height="170dp"
+                    android:layout_margin="6dp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="4dp">
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#FFFFFF"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="12dp">
 
                         <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
                             android:src="@drawable/ic_prescreptions"
                             app:tint="#009688" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Prescriptions"
-                            android:textColor="#000000" />
+                            android:layout_marginTop="10dp"
+                            android:text="Ordonnances"
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
-            <!-- Troisième ligne -->
+            <!-- Row 3 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -224,62 +216,66 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/profileCard"
                     android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="8dp"
+                    android:layout_height="170dp"
+                    android:layout_margin="6dp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="4dp">
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#FFFFFF"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="12dp">
 
                         <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
                             android:src="@drawable/ic_username"
                             app:tint="#009688" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Profile"
-                            android:textColor="#000000" />
+                            android:layout_marginTop="10dp"
+                            android:text="Profil"
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/scheduleCard"
                     android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="8dp"
+                    android:layout_height="170dp"
+                    android:layout_margin="6dp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="4dp">
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
 
                     <LinearLayout
-                        android:layout_width="179dp"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#FFFFFF"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="12dp">
 
                         <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
                             android:src="@drawable/ic_schedule"
                             app:tint="#009688" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Schedule"
-                            android:textColor="#000000" />
+                            android:layout_marginTop="10dp"
+                            android:text="Planning"
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>

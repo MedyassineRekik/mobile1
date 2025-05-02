@@ -34,7 +34,7 @@
                 android:id="@+id/notificationMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="You have to take your medication"
+                android:text="Vous devez prendre votre médicament"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Eat something"
+                android:text="Mangez quelque chose"
                 android:textColor="#616161"
                 android:textSize="14sp" />
 
