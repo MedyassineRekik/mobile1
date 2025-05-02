@@ -22,9 +22,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Never Miss a Dose"
+        android:text="Ne Ratez Aucune Prise"
         android:textColor="#009688"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         tools:ignore="HardcodedText" />
 
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:lineSpacingExtra="4dp"
-        android:text="Take control of your health with reliable medication tracking"
+        android:text="Prenez le contrôle de votre santé avec un suivi fiable des médicaments"
         android:textColor="#000000"
         android:textSize="16sp"
         tools:ignore="HardcodedText" />

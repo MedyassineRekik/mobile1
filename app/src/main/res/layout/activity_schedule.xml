@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <!-- Toolbar -->
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -39,18 +39,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Planning"
+                    android:text="Planning Médical"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </RelativeLayout>
-        </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.MaterialToolbar>
 
         <!-- Titre -->
+
+        <!-- Modern Calendar -->
         <TextView
             android:id="@+id/monthYearText"
-            android:layout_width="match_parent"
+            android:layout_width="438dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/dialog_rounded_bg"
             android:gravity="center"
             android:padding="16dp"
             android:text="Choisissez une date"
@@ -58,31 +61,38 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <!-- CalendarView -->
-        <CalendarView
-            android:id="@+id/calendarView"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp" />
+            android:layout_margin="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
 
+            <CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@color/white"
+                android:dateTextAppearance="@style/CalendarDateText"
+                android:weekDayTextAppearance="@style/CalendarWeekDayText"/>
+        </com.google.android.material.card.MaterialCardView>
         <!-- Section Rappels -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:text="Rappels"
             android:textColor="#009688"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/scheduleRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp" />
+            android:layout_margin="16dp"
+            android:clipToPadding="false"
+            android:paddingBottom="80dp"/>
     </LinearLayout>
 </ScrollView>

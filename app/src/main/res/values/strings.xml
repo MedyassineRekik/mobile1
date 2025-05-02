@@ -1,6 +1,6 @@
 <resources>
-    <string name="welcome_title">Welcome to MediAssist</string>
-    <string name="welcome_subtitle">Your Medical Assistant At Your Hands</string>
-    <string name="get_started">Get Started</string>
-    <string name="splash_quote">\"Healing is a matter of time, but it is sometimes also a matter of opportunity.\"</string>
+    <string name="welcome_title">Bienvenue sur MediAssist</string>
+    <string name="welcome_subtitle">Votre Assistant Médical à Portée de Main</string>
+    <string name="get_started">Commencer</string>
+    <string name="splash_quote">\"La guérison est une question de temps, mais parfois aussi une question d\'opportunite.\"</string>
 </resources>
