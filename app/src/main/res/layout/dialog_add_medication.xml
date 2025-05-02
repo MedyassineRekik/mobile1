@@ -23,6 +23,29 @@
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginBottom="16dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/medicationPreview"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/ic_medication"
+                android:contentDescription="Preview médicament"
+                android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/btnSelectImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choisir une image"
+                android:backgroundTint="#009688"
+                android:textColor="#FFFFFF"/>
+        </LinearLayout>
 
         <!-- Nom du médicament -->
         <com.google.android.material.textfield.TextInputLayout

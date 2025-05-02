@@ -1,5 +1,6 @@
 package com.example.mediassist.adapters;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.mediassist.R;
 import com.example.mediassist.models.Medication;
 
@@ -62,7 +64,12 @@ public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.Me
             dosageText.setText(medication.getDosage());
             frequencyText.setText(medication.getFrequency());
             scheduleText.setText(medication.getSchedule());
-            medicationImage.setImageResource(medication.getImageResId());
-        }
-    }
-}
+            if (medication.getImageUri() != null) {
+                Glide.with(itemView.getContext())
+                        .load(Uri.parse(medication.getImageUri()))
+                        .into(medicationImage);
+            } else {
+                medicationImage.setImageResource(R.drawable.ic_medication);
+            }
+        }}}
+

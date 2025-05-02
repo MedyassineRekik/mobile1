@@ -1,6 +1,7 @@
 package com.example.mediassist.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -24,7 +26,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MedicationActivity extends AppCompatActivity {
-
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private Uri selectedImageUri;
+    private ImageView medicationPreview;
     private RecyclerView medicationRecyclerView;
     private MedicationAdapter adapter;
     private List<Medication> medicationList = new ArrayList<>();
@@ -57,7 +61,8 @@ public class MedicationActivity extends AppCompatActivity {
     private void showAddMedicationDialog() {
         // Inflater le layout
         View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_add_medication, null);
-
+        medicationPreview = dialogView.findViewById(R.id.medicationPreview);
+        Button btnSelectImage = dialogView.findViewById(R.id.btnSelectImage);
         // Créer le dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomAlertDialog);
         builder.setView(dialogView);
@@ -65,6 +70,12 @@ public class MedicationActivity extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+        btnSelectImage.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+        });
 
         // Gérer les boutons
         Button btnCancel = dialogView.findViewById(R.id.btnCancel);
@@ -74,6 +85,7 @@ public class MedicationActivity extends AppCompatActivity {
 
         btnAdd.setOnClickListener(v -> {
             // Récupérer les valeurs
+
             TextInputEditText etName = dialogView.findViewById(R.id.etMedicationName);
             TextInputEditText etDosage = dialogView.findViewById(R.id.etDosage);
             TextInputEditText etFrequency = dialogView.findViewById(R.id.etFrequency);
@@ -121,5 +133,13 @@ public class MedicationActivity extends AppCompatActivity {
                 "2 fois/jour",
                 "09:00, 21:00",
                 R.drawable.ic_medication));
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            selectedImageUri = data.getData();
+            medicationPreview.setImageURI(selectedImageUri);
+        }
     }
 }
